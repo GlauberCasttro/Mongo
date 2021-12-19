@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\API.POC_MONGO.Domain\API.POC_MONGO.Domain.csproj" />
+    <ProjectReference Include="..\API.POC_MONGO.Infrastructure\API.POC_MONGO.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

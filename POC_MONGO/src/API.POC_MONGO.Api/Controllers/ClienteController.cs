@@ -34,6 +34,7 @@ namespace API.POC_MONGO.Api.Controllers
         public async Task<IActionResult> Get(string id)
         {
             var cliente = await _clienteRepository.ObterPorId(id);
+            _z
 
             if (cliente == null)
                 return NotFound("Cliente não encontrado");
@@ -58,7 +59,7 @@ namespace API.POC_MONGO.Api.Controllers
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post(ClienteModel clienteModel)
         {
-            var result = await _clienteApplication.Salvar(clienteModel);
+            var result = await _clienteApplication.Cadastrar(clienteModel);
 
             if (result.Success)
                 return Created($"/clientes/{result.Object.Id}", _mapper.Map<Cliente, ClienteModel>(result.Object));

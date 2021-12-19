@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace API.POC_MONGO.Domain.Core.Data
@@ -16,6 +17,4 @@ namespace API.POC_MONGO.Domain.Core.Data
 
         Task Remover(string id);
     }
-    public interface IRepository_2<TEntity> : IDisposable where TEntity : class
-    { }
 }

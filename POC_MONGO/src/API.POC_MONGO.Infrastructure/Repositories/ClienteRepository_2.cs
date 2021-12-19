@@ -30,7 +30,7 @@ namespace API.POC_MONGO.Infrastructure.Repositories
         public async Task AtualizarCompleto(Cliente restaurante)
         {
             var document = _mapper.Map<ClienteSchema>(restaurante);
-            await Task.Run(() => DbSet.ReplaceOne(e => e.Id == document.Id, document));
+            await Task.Run(() => DbSet.ReplaceOneAsync(e => e.Id == document.Id, document));
         }
 
         public async Task AtualizarSituacao(string id, Situacao situacao)

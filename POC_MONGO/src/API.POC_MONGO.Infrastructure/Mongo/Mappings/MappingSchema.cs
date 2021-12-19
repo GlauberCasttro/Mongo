@@ -21,7 +21,19 @@ namespace API.POC_MONGO.Infrastructure.Mongo.Mappings
                     .SetIdGenerator(StringObjectIdGenerator.Instance).SetSerializer(new StringSerializer(BsonType.ObjectId)); //mapeaando o id
                     rest.MapMember(e => e.Situacao).SetSerializer(new EnumSerializer<Situacao>(BsonType.Int32));//mapeado o enum para um tipo inteiro no mongo
                     rest.SetIgnoreExtraElements(true);//se algum momento estiver no banco algumas propriedades que tem no banco e nao tem no schema, ele ignora e nao da erro
-                    rest.GetMemberMap(c => c.DataCriacao).SetElementName("dt_criacao");             
+                    rest.GetMemberMap(c => c.DataCriacao).SetElementName("dt_criacao");
+                });
+            }
+
+            if (!BsonClassMap.IsClassMapRegistered(typeof(HistoricoClienteSchema)))
+            {
+                BsonClassMap.RegisterClassMap<HistoricoClienteSchema>(rest =>
+                {
+                    rest.AutoMap();
+                    rest.MapIdMember(e => e.Id)
+                    .SetIdGenerator(StringObjectIdGenerator.Instance).SetSerializer(new StringSerializer(BsonType.ObjectId));
+                    rest.GetMemberMap(c => c.DataAlteracacao).SetElementName("dt_criacao");
+                    rest.GetMemberMap(c => c.NomeCliente).SetElementName("nome");
                 });
             }
         }

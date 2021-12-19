@@ -12,6 +12,7 @@ using API.POC_MONGO.CrossCutting.IoC;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using API.POC_MONGO.Infrastructure;
 
 namespace API.POC_MONGO.Api
 {
@@ -38,6 +39,7 @@ namespace API.POC_MONGO.Api
             services.AddAutoMapper(AssemblyUtil.GetCurrentAssemblies());
 
             services.AddDependencyResolver();
+
 
             services.AddHealthChecks();
 

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace API.POC_MONGO.Infrastructure.Schemas
 {
-    public class ClienteSchema
+    public class ClienteSchema : ISchemaRoot
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }

@@ -4,8 +4,6 @@ using API.POC_MONGO.Infrastructure.Mongo;
 using API.POC_MONGO.Infrastructure.Schemas;
 using AutoMapper;
 using MongoDB.Driver;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.POC_MONGO.Infrastructure.Repositories
 {
@@ -13,22 +11,28 @@ namespace API.POC_MONGO.Infrastructure.Repositories
     {
         private readonly IMapper _mapper;
 
-        public ClienteRepository(IMapper mapper, IMongoContext context)
-            : base(context, "clientes", mapper)
+        public ClienteRepository(IMapper mapper, IMongoContext context, IClientSessionHandle clientSessionHandle)
+            : base(context, mapper, clientSessionHandle, "clientes")
         {
             _mapper = mapper;
         }
-        public override async Task<Cliente> ObterPorId(string id)
-        {
-            var document = await Task.Run(() => (from e in DbSet.AsQueryable()
-                                                 where e.Id == id
-                                                 select new ClienteSchema
-                                                 {
-                                                     Id = e.Id,
-                                                     Cpf = e.Cpf,
-                                                 }).FirstOrDefault());
 
-            return _mapper.Map<Cliente>(document);
-        }
+
+        #region TesteObterPorId
+
+        //public override async Task<Cliente> ObterPorId(string id)
+        //{
+        //    var document = await Task.Run(() => (from e in DbSet.AsQueryable()
+        //                                         where e.Id == id
+        //                                         select new ClienteSchema
+        //                                         {
+        //                                             Id = e.Id,
+        //                                             Cpf = e.Cpf,
+        //                                         }).FirstOrDefault());
+
+        //    return _mapper.Map<Cliente>(document);
+        //}
+
+        #endregion TesteObterPorId
     }
 }

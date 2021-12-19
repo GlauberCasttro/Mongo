@@ -16,6 +16,9 @@ namespace API.POC_MONGO.Infrastructure.Repositories
             DbSet = Context.GetCollection<TEntity>(collectionName);
         }
 
-        public void Dispose() => Context?.Dispose();
+        public void Dispose()
+        {
+
+        }
     }
 }

@@ -3,6 +3,6 @@ using API.POC_MONGO.Domain.Entities;
 
 namespace API.POC_MONGO.Domain.Repositories
 {
-    public interface IClienteRepository : IRepository<Cliente>
+    public interface IClienteHistoricoRepository : IRepository<HistoricoCliente>
     { }
 }

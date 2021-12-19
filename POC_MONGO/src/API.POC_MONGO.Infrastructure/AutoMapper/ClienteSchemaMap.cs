@@ -14,7 +14,7 @@ namespace API.POC_MONGO.Infrastructure.AutoMapper
                 .ForMember(dest => dest.Cpf, m => m.Ignore())
                 .ForMember(dest => dest.Email, m => m.Ignore())
                 .ForMember(dest => dest.Telefone, m => m.MapFrom(src => src.Ddd.HasValue ? new Telefone(src.Ddd.Value, src.Telefone) : null))
-                .ForMember(dest=> dest.Telefones, m => m.MapFrom(src=> src.Telefones))
+                .ForMember(dest => dest.Telefones, m => m.MapFrom(src => src.Telefones))
                 .ConstructUsing(src =>
                     new Cliente(
                         new Nome(src.Nome, src.Sobrenome),

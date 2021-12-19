@@ -6,7 +6,7 @@ namespace API.POC_MONGO.Application.Interfaces
 {
     public interface IClienteApplication
     {
-        Task<Result<Cliente>> Salvar(ClienteModel clienteModel);
+        Task<Result<Cliente>> Cadastrar(ClienteModel clienteModel);
         Task<Result<Cliente>> Atualizar(ClienteModel clienteModel);
 
         Task Deletar(string id);
