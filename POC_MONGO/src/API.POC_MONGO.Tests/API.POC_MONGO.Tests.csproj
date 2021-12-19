@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\API.POC_MONGO.Api\API.POC_MONGO.Api.csproj" />
+    <ProjectReference Include="..\API.POC_MONGO.Application\API.POC_MONGO.Application.csproj" />
+    <ProjectReference Include="..\API.POC_MONGO.Domain\API.POC_MONGO.Domain.csproj" />
+    <ProjectReference Include="..\API.POC_MONGO.Infrastructure\API.POC_MONGO.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

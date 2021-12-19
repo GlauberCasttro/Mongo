@@ -3,6 +3,7 @@ using Domain.Interfaces;
 using Infra.Data.Mongo;
 using Infra.Repositories;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Driver;
 
 namespace CrossCutting.DependencyInjection
 {
@@ -30,7 +31,7 @@ namespace CrossCutting.DependencyInjection
 
         private static void ResolverRepositorys(IServiceCollection services)
         {
-            services.AddSingleton<MongoDbContext>();
+            services.AddScoped<MongoDbContext>();
             services.AddScoped<IAvalicacaoRepository, AvaliacaoRepository>();
             services.AddScoped<IRestauranteRepository, RestauranteRepository>();
             services.AddScoped<ICollectionMongoFactory<RestauranteSchema>, CollectionFactory<RestauranteSchema>>();

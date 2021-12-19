@@ -3,6 +3,7 @@ using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
 using FluentValidation.Results;
+using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,25 +16,32 @@ namespace Application
         private readonly IMapper _mapper;
         private readonly IRestauranteRepository _restauranteRepository;
         public List<ValidationFailure> Errors { get; private set; }
+        private readonly IClientSessionHandle clientSessionHandle;
 
-        public RestauranteCadastrarApplication(IMapper mapper, IRestauranteRepository restauranteRepository)
+        public RestauranteCadastrarApplication(IMapper mapper, IRestauranteRepository restauranteRepository, 
+            IClientSessionHandle clientSessionHandle)
         {
-            _mapper = mapper;
+            this.clientSessionHandle = clientSessionHandle;
+               _mapper = mapper;
             _restauranteRepository = restauranteRepository;
         }
 
         public async Task Cadastrar(RestauranteDto restauranteDto)
         {
             var restaurante = _mapper.Map<Restaurante>(restauranteDto);
-            var validate = restaurante.Validar();
+            //var validate = restaurante.Validar();
 
-            if (!validate.IsValid)
-            {
-                AdicionarErros(validate);
-                return;
-            }
+            //if (!validate.IsValid)
+            //{
+            //    AdicionarErros(validate);
+            //    return;
+            //}
+
+            clientSessionHandle.StartTransaction();
 
             await _restauranteRepository.Adicionar(restaurante);
+
+            await clientSessionHandle.CommitTransactionAsync();
         }
 
         private void AdicionarErros(ValidationResult result)

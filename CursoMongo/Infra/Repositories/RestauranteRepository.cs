@@ -105,6 +105,15 @@ namespace Infra.Repositories
             return result.ModifiedCount > 0;
         }
 
+        private async Task AdicionarHistorico(string id, HistoricoRestaurante historicoRestaurante)
+        {
+            var filter = Builders<RestauranteSchema>.Filter.And(Builders<RestauranteSchema>.Filter.Eq("_id", id));
+
+            var update = Builders<RestauranteSchema>.Update.AddToSet($"{Restaurante}.$.Historicos", historicoRestaurante);
+
+            await _collection.FindOneAndUpdateAsync(filter, update);
+        }
+
         public async Task<Restaurante> ObterPorId(string id)
         {
             try

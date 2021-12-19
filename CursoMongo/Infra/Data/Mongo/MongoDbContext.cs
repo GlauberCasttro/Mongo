@@ -12,11 +12,13 @@ namespace Infra.Data.Mongo
     /// </summary>
     public class MongoDbContext
     {
-        public IMongoDatabase MongoClient { get; private set; }
-
+        public IMongoDatabase MongoDatabase { get; private set; }
+        private IMongoClient _mongoClient { get; set; }
         private readonly MongoSettings mongoConfig;
         public MongoDbContext(IOptions<MongoSettings> config)
         {
+
+
             mongoConfig = config.Value;
             Configure();
         }
@@ -26,6 +28,7 @@ namespace Infra.Data.Mongo
             try
             {
                 GetDataBase();
+                _mongoClient.StartSession();
                 Mapping.MapearEntidadesMongo();
             }
             catch (Exception ex)
@@ -36,9 +39,20 @@ namespace Infra.Data.Mongo
 
         public IMongoDatabase GetDataBase()
         {
-            var client = new MongoClient(mongoConfig.ConnectionString);
-            return client.GetDatabase(mongoConfig.Database);
+            _mongoClient = MongoCliente();
+            return _mongoClient.GetDatabase(mongoConfig.Database);
         }
+
+        private IMongoClient MongoCliente()
+        {
+            return new MongoClient(mongoConfig.ConnectionString);
+        }
+
+        public IMongoClient RecupMOngoCLient()
+        {
+            return _mongoClient;
+        }
+
     }
 }
 

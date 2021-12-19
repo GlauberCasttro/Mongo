@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\API.POC_MONGO.Application\API.POC_MONGO.Application.csproj" />
+    <ProjectReference Include="..\API.POC_MONGO.Domain\API.POC_MONGO.Domain.csproj" />
+    <ProjectReference Include="..\API.POC_MONGO.Infrastructure\API.POC_MONGO.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

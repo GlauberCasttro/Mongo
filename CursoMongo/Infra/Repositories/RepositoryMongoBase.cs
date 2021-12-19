@@ -12,10 +12,10 @@ namespace Infra.Repositories
     {
         public IMongoCollection<T> _collection;
 
-        public RepositoryMongoBase(MongoDbContext mongo, string CollectionName)
+        public RepositoryMongoBase(MongoDbContext mongo, string CollectionName
+            )
         {
-            _collection = mongo.GetDataBase()
-                            .GetCollection<T>(CollectionName);
+            _collection = mongo.GetDataBase().GetCollection<T>(CollectionName);
         }
     }
 }
