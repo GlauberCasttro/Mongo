@@ -34,12 +34,27 @@ namespace API.POC_MONGO.Api.Controllers
         public async Task<IActionResult> Get(string id)
         {
             var cliente = await _clienteRepository.ObterPorId(id);
-            _z
 
             if (cliente == null)
                 return NotFound("Cliente não encontrado");
 
             return Ok(_mapper.Map<Cliente, ClienteModel>(cliente));
+        }
+
+        [HttpGet]
+        [Route("obter")]
+        [ProducesResponseType(typeof(ClienteModel), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Get([FromQuery] Filtro filtro)
+        {
+            var cliente = await _clienteRepository.Obter(filtro.Nome, filtro.Situacoes);
+
+            if (cliente == null)
+                return NotFound("Cliente não encontrado");
+
+            return Ok(_mapper.Map<IEnumerable<ClienteModel>>(cliente));
         }
 
         [HttpGet]
@@ -66,6 +81,7 @@ namespace API.POC_MONGO.Api.Controllers
 
             return BadRequest(result.Notifications);
         }
+
         [HttpPut]
         [ProducesResponseType(typeof(ClienteModel), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
@@ -89,5 +105,10 @@ namespace API.POC_MONGO.Api.Controllers
 
             return NoContent();
         }
+    }
+    public class Filtro
+    {
+        public string Nome { get; set; }
+        public IEnumerable<Situacao> Situacoes { get; set; }
     }
 }

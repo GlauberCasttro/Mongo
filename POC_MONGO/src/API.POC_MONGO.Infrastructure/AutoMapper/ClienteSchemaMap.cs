@@ -15,6 +15,7 @@ namespace API.POC_MONGO.Infrastructure.AutoMapper
                 .ForMember(dest => dest.Email, m => m.Ignore())
                 .ForMember(dest => dest.Telefone, m => m.MapFrom(src => src.Ddd.HasValue ? new Telefone(src.Ddd.Value, src.Telefone) : null))
                 .ForMember(dest => dest.Telefones, m => m.MapFrom(src => src.Telefones))
+                .ForMember(dest=> dest.Situacao, m=> m.MapFrom(src=> src.Situacao))
                 .ConstructUsing(src =>
                     new Cliente(
                         new Nome(src.Nome, src.Sobrenome),
@@ -31,6 +32,7 @@ namespace API.POC_MONGO.Infrastructure.AutoMapper
                 .ForMember(dest => dest.Ddd, m => m.MapFrom(src => src.Telefone.Ddd))
                 .ForMember(dest => dest.Telefone, m => m.MapFrom(src => src.Telefone.Numero))
                 .ForMember(dest => dest.Telefones, m => m.MapFrom(src => src.Telefones))
+                .ForMember(dest => dest.Situacao, m => m.MapFrom(src => src.Situacao))
                 .ForMember(dest => dest.Email, m => m.MapFrom(src => src.Email.ToString()));
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using API.POC_MONGO.Domain.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace API.POC_MONGO.Application.Models
@@ -13,6 +14,7 @@ namespace API.POC_MONGO.Application.Models
         public string Telefone { get; set; }
         public string Email { get; set; }
         public string Segmento { get; set; }
+        public Situacao Situacao { get; set; }
         public List<string> Telefones { get; set; }
     }
 }
