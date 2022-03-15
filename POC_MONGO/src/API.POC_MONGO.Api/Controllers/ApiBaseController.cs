@@ -20,5 +20,9 @@ namespace API.POC_MONGO.Api.Controllers
         //{
         //    return new NotFoundObjectResult(new ErrorModel(message));
         //}
+        //protected NotFoundObjectResSADSASDSADult NotFound(string message)
+        //{
+        //    return new NotFoundObjectResult(new ErrorModel(message));
+        //}
     }
 }
